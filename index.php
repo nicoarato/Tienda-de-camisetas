@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-<div id="contenido">
+<div id="container">
     <!--header-->
         <header id="header">
             <div id="logo">
@@ -29,55 +29,60 @@
             </ul>
         </nav>
     
-        <!--barra lateral-->
-        <aside id="lateral">
-            <div id="login" class="blockaside">
-                <form action="#" method="POST">
-                    <label for="email">Email</label>
-                    <input type="email" name="email">
+        <div id="content">
+            <!--barra lateral-->
+            <aside id="lateral">
+                <div id="login" class="block_aside">
+                    <h3>Login</h3>
+                    <form action="#" method="POST">
+                        <label for="email">Email</label>
+                        <input type="email" name="email">
 
-                    <label for="password">Contraseña</label>
-                    <input type="password" name="password">
+                        <label for="password">Contraseña</label>
+                        <input type="password" name="password">
 
-                    <label for="email">Email</label>
-                    <input type="email" name="email">
-
-                    <input type="submit" value="Enviar">
-                </form>
-                <a href="#">Mis pedidos</a>
-                <a href="#">Gestionar pedidos</a>
-                <a href="#">Gestionar categorias</a>
-            </div>
-        </aside>
+                        <input type="submit" value="Enviar">
+                    </form>
+                    <ul>
+                        <li><a href="#">Mis pedidos</a></li>
+                        <li><a href="#">Gestionar pedidos</a></li>
+                        <li><a href="#">Gestionar categorias</a></li>
+                    </ul>
+                </div>
+            </aside>
+        
 
         <!--contenido central-->
         <div id="central">
+            <h1>Productos destacados</h1>
+
             <div class="product">
                 <img src="img/camiseta.png" alt="">
                 <h2>Camiseta Azul Ancha</h2>
                 <p>30 euros</p>
-                <a href="#">Comprar</a>
+                <a href="#" class="button">Comprar</a>
             </div>
 
             <div class="product">
                 <img src="img/camiseta.png" alt="">
                 <h2>Camiseta Azul Ancha</h2>
                 <p>30 euros</p>
-                <a href="#">Comprar</a>
+                <a href="#" class="button">Comprar</a>
             </div>
 
             <div class="product">
                 <img src="img/camiseta.png" alt="">
                 <h2>Camiseta Azul Ancha</h2>
                 <p>30 euros</p>
-                <a href="#">Comprar</a>
+                <a href="#" class="button">Comprar</a>
             </div>
+        </div><!--central-->
+        </div><!--content-->
+    
+        <!--footer-->
+        <div id="footer">
+            <p>Desarrollado por Nico Arato &copy; <?=date('Y')?> </p>
         </div>
-
     </div><!--contenido-->
-    <!--footer-->
-    <div id="footer">
-        <p>Desarrollado por Nico Arato &copy; <?=date('Y')?> </p>
-    </div>
 </body>
 </html>
