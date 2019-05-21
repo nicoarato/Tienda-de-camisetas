@@ -262,3 +262,14 @@ button, .button{
     height: 100px;
     margin-bottom: 10px;
 }
+
+/*footer*/
+
+#footer{
+    text-align: center;
+    padding: 10px;
+    background: #222222;
+    color: white;
+    clear: both;
+    border-top: 4px solid #01b1ea;
+}
