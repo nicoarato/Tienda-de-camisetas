@@ -1,88 +1,38 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Document</title>
-</head>
-<body>
-<div id="container">
-    <!--header-->
-        <header id="header">
-            <div id="logo">
-                <img src="img/camiseta.png" alt="camiseta-logo">
-                <a href="index.php">Tienda de camisetas</a>
-            </div>
-        </header>
-    
-        <!--menu-->
-        <nav id="menu">
-            <ul>
-                <li><a href=""> Inicio</a></li>
-                <li><a href=""> Categoria 1</a></li>
-                <li><a href=""> Categoria 2</a></li>
-                <li><a href=""> Categoria 3</a></li>
-                <li><a href=""> Categoria 4</a></li>
-                <li><a href=""> Categoria 5</a></li>
-            </ul>
-        </nav>
-    
-        <div id="content">
-            <!--barra lateral-->
-            <aside id="lateral">
-                <div id="login" class="block_aside">
-                    <h3>Login</h3>
-                    <form action="#" method="POST">
-                        <label for="email">Email</label>
-                        <input type="email" name="email">
+<?php
+//controlador frontal
+require_once 'autoload.php';
+require_once 'config/parameters.php';
+require_once 'views/layout/header.php';
+require_once 'views/layout/sidebar.php';
 
-                        <label for="password">Contraseña</label>
-                        <input type="password" name="password">
+function showError(){
+    $error = new errorController();
+    $error->index();
+}
 
-                        <input type="submit" value="Enviar">
-                    </form>
-                    <ul>
-                        <li><a href="#">Mis pedidos</a></li>
-                        <li><a href="#">Gestionar pedidos</a></li>
-                        <li><a href="#">Gestionar categorias</a></li>
-                    </ul>
-                </div>
-            </aside>
-        
+if(isset($_GET['controller'])){
+    $nombre_controlador = $_GET['controller'] . 'Controller';
+}elseif(!isset($_GET['controller']) && !isset($_GET['action'])){
+    $nombre_controlador = controller_default;
+}else{
+    showError();
+    exit();
+}
 
-        <!--contenido central-->
-        <div id="central">
-            <h1>Productos destacados</h1>
+if(class_exists($nombre_controlador)){
+    $controlador = new $nombre_controlador();
 
-            <div class="product">
-                <img src="img/camiseta.png" alt="">
-                <h2>Camiseta Azul Ancha</h2>
-                <p>30 euros</p>
-                <a href="#" class="button">Comprar</a>
-            </div>
+    if(isset($_GET['action']) && method_exists($controlador, $_GET['action'])){
+        $action = $_GET['action'];
+        $controlador->$action();
+    }elseif(!isset($_GET['controller']) && !isset($_GET['action'])){
+        $action_default = action_default;
+        $controlador->$action_default();
+    }else{
+        showError();
+    }
+}else{
+    showError();
+}
 
-            <div class="product">
-                <img src="img/camiseta.png" alt="">
-                <h2>Camiseta Azul Ancha</h2>
-                <p>30 euros</p>
-                <a href="#" class="button">Comprar</a>
-            </div>
-
-            <div class="product">
-                <img src="img/camiseta.png" alt="">
-                <h2>Camiseta Azul Ancha</h2>
-                <p>30 euros</p>
-                <a href="#" class="button">Comprar</a>
-            </div>
-        </div><!--central-->
-        </div><!--content-->
-    
-        <!--footer-->
-        <div id="footer">
-            <p>Desarrollado por Nico Arato &copy; <?=date('Y')?> </p>
-        </div>
-    </div><!--contenido-->
-</body>
-</html>
+require_once 'views/layout/footer.php';
