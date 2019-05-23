@@ -273,3 +273,12 @@ button, .button{
     clear: both;
     border-top: 4px solid #01b1ea;
 }
+
+/*ALERT*/
+.alert-green{
+    color: green;
+}
+
+.alert-red{
+    color: red;
+}
