@@ -197,7 +197,7 @@ button, .button{
     border-radius: 2px;
     width: auto;
     padding: 5px 10px;
-    color: white;
+    color: white!important;
     background: #2979cd;
     border: 1px solid #11608e;
 }
@@ -216,6 +216,11 @@ button, .button{
     text-decoration: none;    
 }
 
+.button-small{
+    width: 120px;
+    text-align: center;
+    margin-bottom: 20px;
+}
 /*central*/
 
 #central{
@@ -282,3 +287,18 @@ button, .button{
 .alert-red{
     color: red;
 }
+
+/*TABLA*/
+table{
+    border: 1px solid #555;
+    width: 100%;
+    text-align: center;
+
+}
+
+td{
+    border-top: 1px solid #ccc;
+    padding: 2px;
+
+}
+
