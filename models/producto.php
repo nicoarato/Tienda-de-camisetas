@@ -21,6 +21,10 @@ class Producto{
         $this->id = $id;
     }
 
+    function setCategoriaId($categoria_id){
+        $this->categoria_id = $categoria_id;
+    }
+
     function setNombre($nombre){
         $this->nombre = $this->db->real_escape_string($nombre);
     }
@@ -46,7 +50,7 @@ class Producto{
      }
 
      function setImagen($imagen){
-        $this->imagen = $this->db->real_escape_string($imagen);
+        $this->imagen = $imagen;
      }
 
      function getId(){
@@ -61,7 +65,11 @@ class Producto{
         return $this->categoria_id;
     }
     
-    function getRecio(){
+    function getDescripcion(){
+        return $this->descripcion;
+    }
+
+    function getPrecio(){
         return $this->precio;
     }
 
@@ -84,5 +92,30 @@ class Producto{
         $productos = $this->db->query("SELECT * FROM productos ORDER BY id DESC;");
         return $productos;
     }
+
+/* 
+    private $id;
+    private $categoria_id;
+    private $nombre;
+    private $descripcion;
+    private $precio;
+    private $stock;
+    private $oferta;
+    private $fecha;
+    private $imagen; */
+
+    public function save(){
+        $sql = "INSERT INTO productos VALUES(NULL, '{$this->getCategoriaId()}', '{$this->getNombre()}', '{$this->getDescripcion()}','{$this->getPrecio()}', '{$this->getStock()}',null ,curdate(), null);";
+        $save = $this->db->query($sql);
+        
+        $result = false;
+        if($save){
+            $result = true;
+        }
+        return $result;
+
+    }
+
+
 
 }
