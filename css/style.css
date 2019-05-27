@@ -323,3 +323,9 @@ td{
 
 }
 
+/*miniatura de camisetas*/
+
+.thumb{
+    width: 100px;
+    height: 100px;
+}

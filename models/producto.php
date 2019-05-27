@@ -93,6 +93,13 @@ class Producto{
         return $productos;
     }
 
+
+    public function getOne(){
+        $producto = $this->db->query("SELECT * FROM productos WHERE id = {$this->getId()};");
+        return $producto->fetch_object();
+    }
+
+
 /* 
     private $id;
     private $categoria_id;
@@ -115,6 +122,30 @@ class Producto{
         return $result;
 
     }
+
+    public function edit(){
+        //$sql = "UPDATE productos SET categoria_id='{$this->getCategoriaId()}', nombre='{$this->getNombre()}', desripcion='{$this->getDescripcion()}', precio={$this->getPrecio()}, stock={$this->getStock()}";
+        $sql = "UPDATE `productos` SET `categoria_id`='{$this->getCategoriaId()}',`nombre`='{$this->getNombre()}',`descripcion`='{$this->getDescripcion()}',`precio`={$this->getPrecio()},`stock`={$this->getStock()}";
+        
+        if($this->getImagen() != null){
+            $sql .= ", `imagen`='{$this->getImagen()}'";
+        }
+
+        $sql .= " WHERE `id` = {$this->id};";
+
+        
+        $save = $this->db->query($sql);
+        
+        
+        $result = false;
+        if($save){
+            $result = true;
+        }
+        return $result;
+
+    }
+
+
 
     public function delete(){
         $sql = "DELETE FROM productos WHERE id={$this->id}";
