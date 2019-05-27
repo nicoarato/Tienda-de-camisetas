@@ -227,6 +227,21 @@ button, .button{
     text-align: center;
     margin-bottom: 20px;
 }
+
+.button-gestion{
+    margin-bottom: 5px;
+
+}
+
+.button-red{
+    background: red;
+    border: 1px solid #cf1717;
+}
+
+.button-green{
+    background: green;
+}
+
 /*central*/
 
 #central{
