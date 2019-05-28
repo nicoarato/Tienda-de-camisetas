@@ -3,6 +3,10 @@ require_once 'models/producto.php';
 class productoController{
     public function index(){
         //echo "controlador producto accion INDEX";
+        $producto = new Producto();
+        $productos = $producto->getRandom(6);
+       // var_dump($productos->num_rows);
+        //die();
 
         //cargar una vista
         require_once 'views/producto/destacados.php';
@@ -126,5 +130,18 @@ class productoController{
 
         header('Location: '.base_url.'producto/gestion');
     }
+
+    public function ver(){
+        if(isset($_GET['id'])){
+            $id= $_GET['id'];
+            
+            $producto = new Producto();
+            $producto->setId($id);
+            $product = $producto->getOne();
+           
+        }
+        require_once 'views/producto/ver.php';
+    }
+
 
 }
