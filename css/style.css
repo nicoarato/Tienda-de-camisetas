@@ -379,3 +379,19 @@ td{
     width: 100px;
     height: 100px;
 }
+
+.button-pedido{
+    display: block;
+    float: right;
+    width: 200px;
+    text-align: center;
+}
+.total-carrito{
+    float: right;
+}
+
+.total-carrito h3{
+    float: left;
+    margin-top: 12px;
+    margin-right: 10px;
+}
