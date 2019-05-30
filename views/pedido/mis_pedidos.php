@@ -1,11 +1,16 @@
-<h1>Mis Pedidos</h1>
+<?php if(isset($gestion)) : ?>
+    <h1>Gestionar Pedidos</h1>
+
+<?php else: ?>
+    <h1>Mis Pedidos</h1>
+<?php endif;?>
 
 <table>
     <tr>
         <th>Nro. Pedido</th>
         <th>Costo</th>
         <th>Fecha</th>
-        
+        <th>Estado</th>
 
     </tr>
 
@@ -19,6 +24,9 @@
             </td>
             <td>
                 <?=$ped->fecha?>
+            </td>
+            <td>
+                <?=$ped->estado?>
             </td>
             
         </tr>
