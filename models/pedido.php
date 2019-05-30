@@ -183,6 +183,24 @@ class Pedido{
         return $result; 
     }
 
+    public function edit(){
+        //$sql = "UPDATE productos SET categoria_id='{$this->getCategoriaId()}', nombre='{$this->getNombre()}', desripcion='{$this->getDescripcion()}', precio={$this->getPrecio()}, stock={$this->getStock()}";
+        $sql = "UPDATE `pedidos` SET `estado`='{$this->getEstado()}'";
+  
+        $sql .= " WHERE `id` = {$this->getId()};";
+
+        
+        $save = $this->db->query($sql);
+        
+        
+        $result = false;
+        if($save){
+            $result = true;
+        }
+        return $result;
+
+    }
+
 }
 
 /* 

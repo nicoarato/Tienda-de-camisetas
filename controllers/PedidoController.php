@@ -110,10 +110,28 @@ class pedidoController{
 
         $pedido = new Pedido();
         $pedidos= $pedido->getAll();
-        
+
 
 
         require_once 'views/pedido/mis_pedidos.php';
+    }
+
+    public function estado(){
+        Utils::isAdmin();
+        if($_POST['pedido_id'] && $_POST['estado']){
+            
+            $id = $_POST['pedido_id'];
+            $estado = $_POST['estado'];
+            //update del pedido
+            $pedido = new Pedido();
+            $pedido->setId($id);
+            $pedido->setEstado($estado);
+            $update = $pedido->edit();
+
+            header('Location: '.base_url. 'pedido/detalle&id='.$id);
+        }else{
+            header('Location: '.base_url);
+        }
     }
 
 }
