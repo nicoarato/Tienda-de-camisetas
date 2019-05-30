@@ -124,6 +124,15 @@ class Pedido{
         return $pedido->fetch_object();
     }
 
+    public function getAllByUser(){
+        $sql = "SELECT p.* FROM pedidos p ";
+        $sql .= "WHERE p.usuario_id = {$this->getUsuarioId()} ORDER BY p.id DESC;";
+              
+        $pedido = $this->db->query($sql);
+        
+        return $pedido;
+    }
+
     public function getProductosByPedido($id){
        // $sql = "SELECT * FROM productos WHERE id IN ";
         //$sql .= "(SELECT producto_id FROM lineas_pedido WHERE pedido_id={$id});";

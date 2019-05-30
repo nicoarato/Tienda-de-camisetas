@@ -69,5 +69,39 @@ class pedidoController{
     }
 
 
+    public function mis_pedidos(){
+
+        Utils::isIdentity();
+        $usuario_id = $_SESSION['identity']->id;
+        $pedido = new Pedido();
+        $pedido->setUsuarioId($usuario_id);
+        $pedidos = $pedido->getAllByUser();
+
+        require_once 'views/pedido/mis_pedidos.php';
+    }
+
+    public function detalle(){
+        Utils::isIdentity();
+
+        if(isset($_GET['id'])){
+            $id = $_GET['id'];
+
+            //sacar el pedido
+            $pedido = new Pedido();
+            $pedido->setId($id);
+            
+            $pedido = $pedido->getOne();
+
+            //sacar los productos
+            $pedido_productos = new Pedido();
+            $productos = $pedido_productos->getProductosByPedido($id);
+
+            require_once 'views/pedido/detalle.php';
+        }else{
+            header('Location: '. base_url . 'pedido/mis_pedidos');
+        }
+
+        
+    }
 
 }
