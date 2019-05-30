@@ -15,7 +15,7 @@ class pedidoController{
             $direccion = isset($_POST['direccion']) ? $_POST['direccion'] : false ;
             
             $stats = Utils::statsCarrito();
-            $costo = $stats['total'];
+            $coste = $stats['total'];
 
             if($provincia && $localidad && $direccion){
                 //Guardar datos en la bdatos
@@ -24,7 +24,7 @@ class pedidoController{
                 $pedido->setProvincia($provincia);
                 $pedido->setLocalidad($localidad);
                 $pedido->setDireccion($direccion);
-                $pedido->setCosto($costo);
+                $pedido->setCoste($coste);
 
                 $save = $pedido->save();
 
@@ -51,7 +51,20 @@ class pedidoController{
     }
 
 
+
     public function confirmado(){
+        if(isset($_SESSION['identity'])){
+            $identity = $_SESSION['identity'];
+            $pedido = new Pedido();
+            $pedido->setUsuarioId($identity->id);
+            
+            $pedido = $pedido->getOneByUser();
+
+            $pedido_productos = new Pedido();
+            $productos = $pedido_productos->getProductosByPedido($pedido->id);
+            
+      
+        }
         require_once 'views/pedido/confirmado.php';
     }
 

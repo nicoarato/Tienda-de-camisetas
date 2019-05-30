@@ -7,7 +7,7 @@ class Pedido{
    private $provincia;
    private $localidad;
    private $direccion;
-   private $costo;
+   private $coste;
    private $estado;
    private $fecha;
    private $hora;
@@ -41,8 +41,8 @@ class Pedido{
         $this->precio = $this->db->real_escape_string($precio);
     }
 
-    function setCosto($costo){
-        $this->costo = $costo;
+    function setCoste($coste){
+        $this->coste = $coste;
     }
 
     function setEstado($estado){
@@ -86,8 +86,8 @@ class Pedido{
         return $this->precio;
     }
 
-    function getCosto(){
-        return $this->costo;
+    function getCoste(){
+        return $this->coste;
     }
 
     function getEstado(){
@@ -113,9 +113,35 @@ class Pedido{
         return $producto->fetch_object();
     }
 
+    public function getOneByUser(){
+        $sql = "SELECT p.id, p.coste FROM pedidos p ";
+        $sql .= "INNER JOIN lineas_pedido lp ON lp.pedido_id = p.id ";
+        $sql .= "WHERE p.usuario_id = {$this->getUsuarioId()} ORDER BY p.id DESC LIMIT 1;";
+       
+       
+        $pedido = $this->db->query($sql);
+        
+        return $pedido->fetch_object();
+    }
+
+    public function getProductosByPedido($id){
+       // $sql = "SELECT * FROM productos WHERE id IN ";
+        //$sql .= "(SELECT producto_id FROM lineas_pedido WHERE pedido_id={$id});";
+
+        $sql = "SELECT pr.*, lp.unidades FROM productos pr ";
+        $sql .= "INNER JOIN lineas_pedido lp ON pr.id=lp.producto_id ";
+        $sql .= "WHERE lp.pedido_id={$id}";
+
+
+        $productos = $this->db->query($sql);
+
+        return $productos;
+
+    }
+
 
     public function save(){
-        $sql = "INSERT INTO pedidos VALUES(NULL, {$this->getUsuarioId()} , '{$this->getProvincia()}', '{$this->getLocalidad()}' , '{$this->getDireccion()}' ,{$this->getCosto()} , 'confirm',curdate() , curtime());";
+        $sql = "INSERT INTO pedidos VALUES(NULL, {$this->getUsuarioId()} , '{$this->getProvincia()}', '{$this->getLocalidad()}' , '{$this->getDireccion()}' ,{$this->getCoste()} , 'confirm',curdate() , curtime());";
         $save = $this->db->query($sql);
         
         $result = false;
@@ -156,7 +182,7 @@ class Pedido{
    private $provincia;
    private $localidad;
    private $direccion;
-   private $costo;
+   private $coste;
    private $estado;
    private $fecha;
    private $hora; */
