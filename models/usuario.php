@@ -98,9 +98,7 @@ class Usuario{
             $usuario = $login->fetch_object();
             //verificar contraseña
             $verify = password_verify($password, $usuario->password);
-            
-        /*     var_dump($verify);
-            die("Contando");  */
+       
 
             if($verify){
                 $result = $usuario;

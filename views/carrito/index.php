@@ -29,7 +29,9 @@
                 <?=$producto->precio?>
             </td>
             <td>
+                <a href="<?=base_url?>carrito/down&index=<?=$indice?>">-</a>
                 <?=$elemento['unidades']?>
+                <a href="<?=base_url?>carrito/up&index=<?=$indice?>">+</a>
             </td>
             <td>
               <a href="<?=base_url?>carrito/delete&index=<?=$indice?>" class="button button-carrito button-red">Quitar producto</a>
