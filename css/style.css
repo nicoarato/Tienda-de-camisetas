@@ -395,3 +395,23 @@ td{
     margin-top: 12px;
     margin-right: 10px;
 }
+
+
+.delete-carrito{
+    float: left;
+    margin-top: 12px;
+    margin-right: 10px;
+}
+
+.button-delete{
+    display: block;
+    float: left;
+    width: 200px;
+    text-align: center;
+    margin-top: 0;
+}
+
+.button-carrito{
+    width: 115px;
+    margin-right: -70px;
+}

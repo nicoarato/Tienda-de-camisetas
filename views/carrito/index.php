@@ -1,12 +1,14 @@
 <h1>Carrito de la compra</h1>
 
+
+<?php if(isset($_SESSION['carrito']) && count($_SESSION['carrito']) >= 1) : ?>
 <table>
     <tr>
         <th>Imagen</th>
         <th>Nombre</th>
         <th>Precio</th>
         <th>Unidades</th>
-
+        <th>Eliminar</th>
     </tr>
 
     <?php foreach($carrito as $indice => $elemento) : 
@@ -29,14 +31,24 @@
             <td>
                 <?=$elemento['unidades']?>
             </td>
+            <td>
+              <a href="<?=base_url?>carrito/delete&index=<?=$indice?>" class="button button-carrito button-red">Quitar producto</a>
+            </td>
         </tr>
     <?php endforeach; ?>
 
 </table>
 
+<div class="delete-carrito">
+    <a href="<?=base_url?>carrito/deleteAll" class="button button-delete button-red">Vaciar Carrito</a>
+</div>
+
 <div class="total-carrito">
     <?php $stats = Utils::statsCarrito();?>
     <h3 >Precio total: $<?=$stats['total']?></h3>
-
     <a href="<?=base_url?>pedido/hacer" class="button button-pedido">Confirmar pedido</a>
 </div>
+
+    <?php else: ?>
+    <p>El carrito está vacío, añade tus productos :)</p>
+    <?php endif;?>
