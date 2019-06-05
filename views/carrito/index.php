@@ -53,4 +53,5 @@
 
     <?php else: ?>
     <p>El carrito está vacío, añade tus productos :)</p>
+
     <?php endif;?>

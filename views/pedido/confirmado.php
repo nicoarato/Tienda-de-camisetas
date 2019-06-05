@@ -1,5 +1,6 @@
 
 <?php if(isset($_SESSION['pedido']) && $_SESSION['pedido'] == 'complete') : ?>
+    
     <h1>Pedido confirmado con Éxito!</h1>
     <p>Tu pedido ha sido guardado con éxito.</p>
 

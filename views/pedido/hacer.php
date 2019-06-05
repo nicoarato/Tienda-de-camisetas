@@ -2,7 +2,7 @@
 
     <h1>Hacer pedido</h1>
     <p>
-        <a href="<?=base_url?>carrit/index">Ver los productos y el precio del pedido</a>
+        <a href="<?=base_url?>carrito/index">Ver los productos y el precio del pedido</a>
     </p>
 
     <h3>Dirección para el envío:</h3>
